@@ -13,10 +13,6 @@ ReactDOM.render(
   <div>
     <BrowserRouter>
       <React.StrictMode>
-        <SideBar pageWrapId={"page-wrap"} outerContainerId={"App"} />
-        <div id="page-wrap">
-            {/* <h1></h1> */}
-        </div>
         <App />
       </React.StrictMode>
     </BrowserRouter>

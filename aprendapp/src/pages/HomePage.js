@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from 'react-router-dom'
 import logo from '../logo.svg';
 import { askForPermissioToReceiveNotifications } from '../push-notification';
-import { BrowserRouter } from 'react-router-dom'
 
 export default function HomePage() {
 
