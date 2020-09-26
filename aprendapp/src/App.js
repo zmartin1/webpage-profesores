@@ -1,7 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { askForPermissioToReceiveNotifications } from './push-notification';
 import { Route, Switch } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import UserPage from './pages/UserPage'

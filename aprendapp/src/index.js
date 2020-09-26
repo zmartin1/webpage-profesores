@@ -6,13 +6,21 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { initializeFirebase } from './push-notification';
 import { askForPermissioToReceiveNotifications } from './push-notification';
+import "./styles.css";
+import SideBar from "./components/sidebar.js";
 
 ReactDOM.render(
-  <BrowserRouter>
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-  </BrowserRouter>,
+  <div>
+    <BrowserRouter>
+      <React.StrictMode>
+        <SideBar pageWrapId={"page-wrap"} outerContainerId={"App"} />
+        <div id="page-wrap">
+            {/* <h1></h1> */}
+        </div>
+        <App />
+      </React.StrictMode>
+    </BrowserRouter>
+  </div>,
   document.getElementById('root')
 );
 
