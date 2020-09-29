@@ -7,6 +7,8 @@ export default function UserPage() {
 
 let { id } = useParams();
 
+
+
 return (
 
     
@@ -20,7 +22,7 @@ return (
 
     <Link to="/"> HomePage </Link>
 
-    <MapView/>
+    <MapView />
 
 </>
 
