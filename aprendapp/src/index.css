@@ -72,6 +72,10 @@ body, html, .App, #root, .auth-wrapper {
   color: #167bff;
 }
 
+.leaflet-container {
+  height: 400px;
+  width: 100%;
+}
 
 /* body {
   margin: 0;
