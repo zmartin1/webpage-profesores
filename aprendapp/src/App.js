@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
-import { Route, Switch, Link } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 import HomePage from './pages/HomePage'
 import UserPage from './pages/UserPageTeacher'
+import Mapa from './pages/Mapa'
 import About from './pages/About'
 import ForgotPassword from './pages/ForgotPassword'
 import Login from "./components/login.component";
@@ -30,6 +31,7 @@ function App() {
       <Route exact path="/sign-in" component={Login} />
       <Route exact path="/about" component={About} />
       <Route exact path="/sign-up" component={SignUp} />
+      <Route exact path="/map" component={Mapa} />
       <Route path="/:id" component={UserPage} />
       </Switch>
     </div>

@@ -7,7 +7,6 @@ import * as serviceWorker from './serviceWorker';
 import { initializeFirebase } from './push-notification';
 import { askForPermissioToReceiveNotifications } from './push-notification';
 import "./styles.css";
-import SideBar from "./components/sidebar.js";
 
 ReactDOM.render(
   <div>

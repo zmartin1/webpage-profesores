@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Map, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import data from '../assets/data';
