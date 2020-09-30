@@ -3,7 +3,7 @@ import './App.css';
 import { Route, Switch, Link } from 'react-router-dom'
 
 import HomePage from './pages/HomePage'
-import UserPage from './pages/UserPage'
+import UserPage from './pages/UserPageTeacher'
 import About from './pages/About'
 import ForgotPassword from './pages/ForgotPassword'
 import Login from "./components/login.component";

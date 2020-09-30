@@ -4,35 +4,6 @@ import 'leaflet/dist/leaflet.css';
 import data from '../assets/data';
 import Markers from './VenueMarkers';
 
-// class MapView extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       currentLocation: { lat: 52.52437, lng: 13.41053 },
-//       zoom: 12,
-//     }
-//   }
-
-//   render() {
-//     const { currentLocation, zoom } = this.state;
-
-//     return (
-//       <Map center={currentLocation} zoom={zoom}>
-//         <TileLayer
-//           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-//           attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-//         />
-
-//         <Markers venues={data.venues}/>
-//       </Map>
-//     );
-//   }
-// }
-
-
-
-
-
 
 export class MapView extends React.Component {
   state = { userLocation: { lat: -34.9062, lng: -56.1861 }, loading: true };
@@ -57,7 +28,12 @@ export class MapView extends React.Component {
     const { loading, userLocation } = this.state;
 
     if (loading) {
-      return null;
+      
+      return null
+      // <div class="progress">
+      // <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+      // </div>
+      ;
     }
 
     return (
@@ -71,21 +47,6 @@ export class MapView extends React.Component {
       );
   }
 
-
-  // render() {
-  //   const { currentLocation, zoom } = this.state;
-
-  //   return (
-  //     <Map center={currentLocation} zoom={zoom}>
-  //       <TileLayer
-  //         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-  //         attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-  //       />
-
-  //       <Markers venues={data.venues}/>
-  //     </Map>
-  //   );
-  // }
 }
 
 export default MapView;

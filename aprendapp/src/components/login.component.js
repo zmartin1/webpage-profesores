@@ -30,6 +30,9 @@ export default class Login extends Component {
                 <p className="forgot-password text-right">
                     Forgot <Link to="/forgot-password"> password? </Link>
                 </p>
+                <button>
+                    <Link className="nav-link" to={"/sign-up"}>Sign up instead?</Link>
+                </button>
             </form>
         </div>
         </div>

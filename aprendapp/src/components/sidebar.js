@@ -9,7 +9,6 @@ export default props => {
     <Menu {...props}>
         <Link to="/"> Home </Link>
         <Link className="nav-link" to={"/sign-in"}>Login</Link>
-        <Link className="nav-link" to={"/sign-up"}>Sign up</Link>
         <Link to="/about"> About </Link>
     </Menu>
   );

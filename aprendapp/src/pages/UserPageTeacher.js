@@ -1,30 +1,28 @@
 import React from "react";
+import { Col } from "react-bootstrap";
 import { Link } from 'react-router-dom'
 import { useParams } from "react-router-dom";
-import MapView from '../components/MapView.js';
+import MapView from '../components/MapViewTeacher.js';
+import "../styles.css";
 
 export default function UserPage() {
 
 let { id } = useParams();
 
-
-
 return (
 
-    
+  <div>
 
-<>
-
-
-    <h1>Hello there user {id}</h1>
-
-    <p>This is your awesome User Profile page</p>
+    <h1>{id}</h1>
 
     <Link to="/"> HomePage </Link>
 
-    <MapView />
+      <div>
+        <MapView />
+      </div>
 
-</>
+
+  </div>
 
 );
 
