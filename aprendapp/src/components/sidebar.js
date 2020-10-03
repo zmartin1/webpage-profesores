@@ -32,7 +32,7 @@ export default class sidebar extends React.Component {
             <Nav className="mr-auto">
               <Link className="nav-link" to="/"> Home </Link>
               <Link className="nav-link" to="/map"> Map </Link>
-              <Link className="nav-link" to={"/sign-in"}>Login</Link>
+              {/* <Link className="nav-link" to={"/sign-in"}>Login</Link> */}
               <NavDropdown title="Profesores" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -46,11 +46,14 @@ export default class sidebar extends React.Component {
               <Link className="nav-link" to="/about"> About </Link>
             </Nav>
           </Navbar.Collapse>
-          <Navbar.Collapse className="justify-content-end">
-              <Navbar.Text>
-                Signed in as: <Link to="/profile">{user}</Link>
-              </Navbar.Text>
-            </Navbar.Collapse>
+          <NavDropdown title={ user }  id="basic-nav-dropdown"> 
+            <Link className="nav-link" to="/settings"> Settings </Link>
+            <Link className="nav-link"  to="/profile"> My Profile </Link>
+            <NavDropdown.Divider />
+            <Button variant="light" block >
+              <Link to="/sign-in"> Log Out </Link>
+            </Button>
+      </NavDropdown>
       </Navbar>
     </div>
     );

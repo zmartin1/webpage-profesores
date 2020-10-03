@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage'
 import UserPage from './pages/UserPageTeacher'
 import Profile from './pages/Profile'
 import Mapa from './pages/Mapa'
+import Settings from './pages/Settings'
 import About from './pages/About'
 import ForgotPassword from './pages/ForgotPassword'
 import Login from "./components/login.component";
@@ -34,6 +35,7 @@ function App() {
       <Route exact path="/sign-up" component={SignUp} />
       <Route exact path="/map" component={Mapa} />
       <Route exact path="/profile" component={Profile} />
+      <Route exact path="/settings" component={Settings} />
       <Route path="/:id" component={UserPage} />
       </Switch>
     </div>
