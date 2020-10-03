@@ -17,24 +17,10 @@ export default function HomePage() {
 
     <div className="App">
         
-        <Container>
-            <Row>
-                <Col sm={4}>
-                    <Card style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src={logo} />
-                        <Card.Body>
-                            <Card.Title> Ver profesores con local en área</Card.Title>
-                            <Card.Text>
-                                Elija un profesor acorde a sus necesidades
-                            </Card.Text>
-                            <Button variant="outline-primary">
-                                <Link className="nav-link" to="/map"> Mapa </Link>
-                            </Button>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col sm={4}>
-                    <Carousel activeIndex={index} onSelect={handleSelect}>
+        <Container fluid>
+            <Row xs={1} md={2}>
+                <Col lg={true}>
+                    <Carousel activeIndex={index} onSelect={handleSelect} >
                         <Carousel.Item>
                             <Image
                             className="d-block w-100"
@@ -47,14 +33,25 @@ export default function HomePage() {
                                 <p>Coordina una clase con tu último profesor recomendado</p>
                                 <Link className="nav-link" to="/{teacher}"> Profesor </Link>
                             </Carousel.Caption>
-                        </Carousel.Item>
-                        
+                        </Carousel.Item>                      
                     </Carousel>
                 </Col>
-            </Row>
-            <Row>
-                <Col sm={4}>
-                    <Card style={{ width: '18rem' }}>
+                <Col>
+                    <Card >
+                        <Card.Img variant="top" src={logo}/>
+                        <Card.Body>
+                            <Card.Title> Ver profesores con local en área</Card.Title>
+                            <Card.Text>
+                                Elija un profesor acorde a sus necesidades
+                            </Card.Text>
+                            <Button variant="outline-primary">
+                                <Link className="nav-link" to="/map"> Mapa </Link>
+                            </Button>
+                        </Card.Body>
+                    </Card>
+                {/* </Col>
+                <Col> */}
+                    <Card >
                         <Card.Img variant="top" src={logo} />
                         <Card.Body>
                             <Card.Title> Sobre la app</Card.Title>
@@ -67,7 +64,11 @@ export default function HomePage() {
                         </Card.Body>
                     </Card>
                 </Col>
+                
+                
+            
             </Row>
+            
         </Container>
         {/* <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />

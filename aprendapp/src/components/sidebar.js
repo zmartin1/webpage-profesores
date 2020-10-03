@@ -12,7 +12,8 @@ export default class sidebar extends React.Component {
     
     return (
       <div>
-        <Navbar bg="light" expand="lg" >
+        <Navbar bg="light" expand="lg" collapseOnSelect>
+          
           <Navbar.Brand>
             <Link to="/">
               <img
@@ -28,8 +29,16 @@ export default class sidebar extends React.Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           
           <Navbar.Collapse id="basic-navbar-nav" >
-          
+            
             <Nav className="mr-auto">
+              <NavDropdown title={ user }  id="basic-nav-dropdown"> 
+              <Link className="nav-link" to="/settings"> Settings </Link>
+              <Link className="nav-link"  to="/profile"> My Profile </Link>
+              <NavDropdown.Divider />
+              <Button variant="light" block >
+                <Link to="/sign-in"> Log Out </Link>
+              </Button>
+              </NavDropdown>
               <Link className="nav-link" to="/"> Home </Link>
               <Link className="nav-link" to="/map"> Map </Link>
               {/* <Link className="nav-link" to={"/sign-in"}>Login</Link> */}
@@ -46,14 +55,7 @@ export default class sidebar extends React.Component {
               <Link className="nav-link" to="/about"> About </Link>
             </Nav>
           </Navbar.Collapse>
-          <NavDropdown title={ user }  id="basic-nav-dropdown"> 
-            <Link className="nav-link" to="/settings"> Settings </Link>
-            <Link className="nav-link"  to="/profile"> My Profile </Link>
-            <NavDropdown.Divider />
-            <Button variant="light" block >
-              <Link to="/sign-in"> Log Out </Link>
-            </Button>
-      </NavDropdown>
+            
       </Navbar>
     </div>
     );
