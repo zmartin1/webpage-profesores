@@ -1,29 +1,54 @@
 import React from "react";
 import { Link } from 'react-router-dom'
-import { useParams } from "react-router-dom";
 import MapView from '../components/MapViewTeacher.js';
+import data from '../assets/teacher.json'
 import "../styles.css";
+import userPhoto from '../assets/joaquito.png'
+import Image from 'react-bootstrap/Image'
 
+const subjectsData = data.subjects;
 
-export default function UserPage() {
+class UserPageTeacher extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      subjects: subjectsData
+    }
+    
+  }
 
-let { id } = useParams();
+  // componentDidMount() {
+  //   this.setState({
+  //     subjects = subjectsData
+  //   })
+  // }
 
-return (
-
-  <div>
-
-    <h1>{id}</h1>
-
-    <Link to="/"> HomePage </Link>
+  render() {
+    return (
 
       <div>
-        <MapView />
-      </div>
+        <h1>{data.name}</h1>
+        <Image src={userPhoto} fluid roundedCircle	width="100 vw"
+/>
 
-
-  </div>
-
-);
-
+        <ul>
+            <li 
+            key = {this.state.subjects.materia}
+            title = {this.state.subjects.puntuacion} />
+        </ul>
+        <Link to="/"> HomePage </Link>
+  
+        <div>
+          <MapView />
+        </div>
+  
+  
+    </div>
+        
+    );
+  }
 }
+
+
+export default UserPageTeacher;
+  

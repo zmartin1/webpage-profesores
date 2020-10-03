@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 
 import HomePage from './pages/HomePage'
 import UserPage from './pages/UserPageTeacher'
+import Profile from './pages/Profile'
 import Mapa from './pages/Mapa'
 import About from './pages/About'
 import ForgotPassword from './pages/ForgotPassword'
@@ -32,6 +33,7 @@ function App() {
       <Route exact path="/about" component={About} />
       <Route exact path="/sign-up" component={SignUp} />
       <Route exact path="/map" component={Mapa} />
+      <Route exact path="/profile" component={Profile} />
       <Route path="/:id" component={UserPage} />
       </Switch>
     </div>
