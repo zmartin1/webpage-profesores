@@ -7,6 +7,7 @@ import {Button, Card, Carousel, Container, Row, Col, Image} from 'react-bootstra
 
 export default function HomePage() {
 
+    const teacher = "/joaquito";
     const [index, setIndex] = useState(0);
 
     const handleSelect = (selectedIndex, e) => {
@@ -31,7 +32,7 @@ export default function HomePage() {
                             <Carousel.Caption>
                                 <h3>Elige a un profesor nuevamente</h3>
                                 <p>Coordina una clase con tu último profesor recomendado</p>
-                                <Link className="nav-link" to="/{teacher}"> Profesor </Link>
+                                <Link className="nav-link" to= {teacher} > Profesor </Link>
                             </Carousel.Caption>
                         </Carousel.Item>                      
                     </Carousel>
