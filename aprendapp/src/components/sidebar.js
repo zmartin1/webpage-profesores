@@ -1,58 +1,84 @@
 import React from "react";
 import logo from '../logo.svg';
-import { Link } from 'react-router-dom'
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
+import { LinkContainer } from "react-router-bootstrap";
 
-const user = "Martin Brian"
+const user = "Martín Brian"
 
 export default class sidebar extends React.Component {
 
-  
+
   render(){
-    
+
+
+
     return (
       <div>
         <Navbar bg="light" expand="lg" collapseOnSelect>
           
           <Navbar.Brand>
-            <Link to="/">
-              <img
-              src={logo}
-              width="50wc"
-              height="50wc"
-              className="d-inline-block align-top"
-              alt="React Bootstrap logo"
-              />
-            </Link>
-            
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <LinkContainer to="/">
+                  <Nav.Link> 
+                    <img
+                    src={logo}
+                    width="50wc"
+                    height="50wc"
+                    className="d-inline-block align-top"
+                    alt="React Bootstrap logo"/> 
+                  </Nav.Link>
+                </LinkContainer>
+            </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={this.toggleNavbar}/>
           
           <Navbar.Collapse id="basic-navbar-nav" >
             
             <Nav className="mr-auto">
               <NavDropdown title={ user }  id="basic-nav-dropdown"> 
-              <Link className="nav-link" to="/settings"> Settings </Link>
-              <Link className="nav-link"  to="/profile"> My Profile </Link>
-              <NavDropdown.Divider />
-              <Button variant="light" block >
-                <Link to="/sign-in"> Log Out </Link>
-              </Button>
+                <LinkContainer to="/settings">
+                  <Nav.Link> Settings </Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/profile">
+                  <Nav.Link> My Profile </Nav.Link>
+                </LinkContainer>
+                {/* <Link onClick={this.closeNavbar} className="nav-link" to="/settings"> Settings </Link>
+                <Link onClick={this.closeNavbar} className="nav-link"  to="/profile"> My Profile </Link> */}
+                <NavDropdown.Divider />
+                <Button variant="light" block >
+                  <LinkContainer to="/sign-in">
+                    <Nav.Link> Log Out </Nav.Link>
+                  </LinkContainer>
+                </Button>
               </NavDropdown>
-              <Link className="nav-link" to="/"> Home </Link>
-              <Link className="nav-link" to="/map"> Map </Link>
+              <LinkContainer to="/">
+                <Nav.Link> Home </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/map">
+                <Nav.Link> Map </Nav.Link>
+              </LinkContainer>
+              
+              {/* <Link onClick={this.closeNavbar} className="nav-link" to="/"> Home </Link>
+              <Link onClick={this.closeNavbar} className="nav-link" to="/map"> Map </Link> */}
               {/* <Link className="nav-link" to={"/sign-in"}>Login</Link> */}
               <NavDropdown title="Profesores" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                <NavDropdown.Item>
+                  <LinkContainer to="/Joaquito">
+                    <Nav.Link> Profe ejemplo  </Nav.Link>
+                  </LinkContainer>
+                  {/* <Link onClick={this.closeNavbar} className="nav-link" to="/Joaquito"> 
+                    Profe ejemplo 
+                  </Link> */}
+                </NavDropdown.Item>
+                <NavDropdown.Item  href="#action/3.2">Another action</NavDropdown.Item>
+                
                 <NavDropdown.Divider />
                 <Form inline>
-                  <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                  <FormControl onClick={this.closeNavbar} type="text" placeholder="Search" className="mr-sm-2" />
                   <Button variant="outline-success" >Search</Button>
                 </Form>
               </NavDropdown>
-              <Link className="nav-link" to="/about"> About </Link>
+              <LinkContainer to="/about">
+                <Nav.Link> About </Nav.Link>
+              </LinkContainer>
             </Nav>
           </Navbar.Collapse>
             
