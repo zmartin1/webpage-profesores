@@ -1,13 +1,14 @@
 {
     "venues": [
         {
-            "description": "It's a park which lies mostly outside the limits of the barrio itself and belongs to Punta Carretas",
-            "name": "Parque Rodó",
+            "description": "Estudiante de Ingeniería, te puedo ayudar a comer alfajores si queres",
+            "name": "Joaquin Martinez",
             "geometry": [
                 -34.9128,
                 -56.1652
             ],
-            "address": "Canelones 1387"
+            "address": "Canelones 1387",
+            "id":1
         },
         {
             "description": "Profesor de Portugués ",
@@ -16,16 +17,8 @@
                 -34.9128,
                 -56.15
             ],
-            "address": "Canelones 1387"
-        },
-        {
-            "description": "Profesor de Portugués ",
-            "name": "Michael Telo",
-            "geometry": [
-                -34.9128,
-                -56.15
-            ],
-            "address": "Canelones 1387"
+            "address": "Canelones 1387",
+            "id":2
         }
         
     ]
