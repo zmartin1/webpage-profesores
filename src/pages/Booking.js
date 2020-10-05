@@ -1,15 +1,29 @@
 import React from "react";
 import { Link } from 'react-router-dom'
+import MyCalendar from "../components/MyCalendar"
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+
+
+import {Container, Row, Col, Image, Jumbotron} from 'react-bootstrap'
 
 export default function Booking() {
 
 return (
 
 <>
-<h1>Booking page</h1>
-<h2>This is a webpage first made for TIC III</h2>
-
-<p>This is where College students will be able to get an income, and we will able to contribute to education.</p>
+    <header>
+        <h1>Elija día para la próxima clase</h1>
+    </header>
+    <Jumbotron fluid>
+        <Container fluid>
+            
+            <Row xs={1} md={2} lg={3} xl={3}>
+                
+                <MyCalendar fluid >
+                </MyCalendar>
+            </Row>
+        </Container>
+    </Jumbotron>
 <Link to="/"> HomePage </Link>
 </>
 
