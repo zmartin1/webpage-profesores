@@ -70,6 +70,9 @@ export default class sidebar extends React.Component {
                   <Button variant="outline-success" >Search</Button>
                 </Form>
               </NavDropdown>
+              <LinkContainer to="/help">
+                <Nav.Link> Help </Nav.Link>
+              </LinkContainer>
               <LinkContainer to="/about">
                 <Nav.Link> About </Nav.Link>
               </LinkContainer>

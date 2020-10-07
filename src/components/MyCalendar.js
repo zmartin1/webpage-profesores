@@ -1,5 +1,4 @@
 import React from 'react';
-import { render } from 'react-dom';
 import { Calendar, momentLocalizer, Views  } from 'react-big-calendar'
 import events from '../assets/events';
 import moment from 'moment';
