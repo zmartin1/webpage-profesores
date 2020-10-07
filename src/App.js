@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import UserPage from './pages/UserPageTeacher'
 import Profile from './pages/Profile'
+import Booking from './pages/Booking'
 import Mapa from './pages/Mapa'
 import Settings from './pages/Settings'
 import About from './pages/About'
@@ -36,7 +37,9 @@ function App() {
       <Route exact path="/map" component={Mapa} />
       <Route exact path="/profile" component={Profile} />
       <Route exact path="/settings" component={Settings} />
-      <Route path="/:id" component={UserPage} />
+      <Route path="/teacher/:id/booking" component={Booking} />
+      <Route path="/teacher/:id" component={UserPage} />
+      
       </Switch>
     </div>
   );

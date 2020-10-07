@@ -1,16 +1,17 @@
-import React from "react";
+import React, {Suspense} from "react";
 import { Link } from 'react-router-dom'
-import MapView from '../components/MapViewTeacher.js';
 import data from '../assets/teacher.json'
 import "../styles.css";
 import userPhoto from '../assets/joaquito.webp'
-import {Button, Card, Carousel, Container, Row, Col, Image} from 'react-bootstrap'
+import {Button, Card, Container, Row, Col, Image} from 'react-bootstrap'
+const MapViewTeacher = React.lazy(() => import ('../components/MapView.js'));
 
 const subjectsData = data.subjects;
 
 class UserPageTeacher extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.teacherUser = data.username
     this.state = {
       subjects: subjectsData
     }
@@ -27,10 +28,10 @@ class UserPageTeacher extends React.Component {
     return (
 
       <Container fluid>
-        <Row xs={1} md={2}>
+        <Row xs={1} md={2} lg={3} xl={3}>
           <Col lg={true}>
             <Card >
-              <Card.Img variant="top" src={userPhoto}/>
+              <Card.Img display= "inline-block" variant="top" src={userPhoto}/>
               <Card.Body>
                   <Card.Title> 
                     {data.name}
@@ -39,13 +40,20 @@ class UserPageTeacher extends React.Component {
                     {data.description}
                   </Card.Text>
                   <Button variant="outline-primary">
-                    <Link className="nav-link" to="/map"> Mapa </Link>
+                    <Link className="nav-link"
+                    to= {{pathname :'/teacher/'+ this.teacherUser + '/booking', teacherData: {data}}}
+                      > Agendar clase </Link>
                   </Button>
               </Card.Body>
             </Card>
           </Col>
           <Col lg={true}>
-            <MapView />     
+            <Container display= "inline-block" fluid>
+              <Suspense fallback={<div>Loading...</div>}>
+                <MapViewTeacher display= "inline-block"/> 
+              </Suspense>
+                  
+            </Container>
           </Col>
           <Link to="/"> HomePage </Link>
         </Row>

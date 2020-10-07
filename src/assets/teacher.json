@@ -1,6 +1,5 @@
-{   
+{   "username": "joaquito",
     "name": "Joaquín Martínez",
-    "id": "1",
     "description": "Estudiante de Ingeniería, te puedo ayudar a comer alfajores si queres",
     "venue": [{
                 "house": true,
