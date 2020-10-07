@@ -36,9 +36,10 @@ function App() {
       <Route exact path="/sign-up" component={SignUp} />
       <Route exact path="/map" component={Mapa} />
       <Route exact path="/profile" component={Profile} />
-      <Route exact path="/booking" component={Booking} />
       <Route exact path="/settings" component={Settings} />
-      <Route path="/:id" component={UserPage} />
+      <Route path="/teacher/:id/booking" component={Booking} />
+      <Route path="/teacher/:id" component={UserPage} />
+      
       </Switch>
     </div>
   );

@@ -55,18 +55,12 @@ export default class sidebar extends React.Component {
               <LinkContainer to="/map">
                 <Nav.Link> Map </Nav.Link>
               </LinkContainer>
-              
-              {/* <Link onClick={this.closeNavbar} className="nav-link" to="/"> Home </Link>
-              <Link onClick={this.closeNavbar} className="nav-link" to="/map"> Map </Link> */}
-              {/* <Link className="nav-link" to={"/sign-in"}>Login</Link> */}
+            
               <NavDropdown title="Profesores" id="basic-nav-dropdown">
                 <NavDropdown.Item>
-                  <LinkContainer to="/Joaquito">
+                  <LinkContainer to="/teacher/Joaquito">
                     <Nav.Link> Profe ejemplo  </Nav.Link>
                   </LinkContainer>
-                  {/* <Link onClick={this.closeNavbar} className="nav-link" to="/Joaquito"> 
-                    Profe ejemplo 
-                  </Link> */}
                 </NavDropdown.Item>
                 <NavDropdown.Item  href="#action/3.2">Another action</NavDropdown.Item>
                 

@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom'
 import data from '../assets/teacher.json'
 import "../styles.css";
 import userPhoto from '../assets/joaquito.webp'
-import {Button, Card, Carousel, Container, Row, Col, Image} from 'react-bootstrap'
+import {Button, Card, Container, Row, Col, Image} from 'react-bootstrap'
 const MapViewTeacher = React.lazy(() => import ('../components/MapView.js'));
 
 const subjectsData = data.subjects;
 
 class UserPageTeacher extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.teacherUser = data.username
     this.state = {
       subjects: subjectsData
     }
@@ -39,7 +40,9 @@ class UserPageTeacher extends React.Component {
                     {data.description}
                   </Card.Text>
                   <Button variant="outline-primary">
-                    <Link className="nav-link" to="/booking"> Agendar clase </Link>
+                    <Link className="nav-link"
+                    to= {{pathname :'/teacher/'+ this.teacherUser + '/booking', teacherData: {data}}}
+                      > Agendar clase </Link>
                   </Button>
               </Card.Body>
             </Card>

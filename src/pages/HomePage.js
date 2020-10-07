@@ -8,7 +8,7 @@ import {Button, Card, Carousel, Container, Row, Col, Image} from 'react-bootstra
 export default function HomePage() {
 
     const teacher = "joaquito";
-    const link = '/'+ teacher
+    const link = '/teacher/'+ teacher
     const [index, setIndex] = useState(0);
 
     const handleSelect = (selectedIndex, e) => {
