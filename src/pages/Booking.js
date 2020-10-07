@@ -6,7 +6,6 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 import {Container, Row, Jumbotron} from 'react-bootstrap'
 
-let teacher= "Joaquin"
 
 export default function Booking() {
 
