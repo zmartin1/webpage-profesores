@@ -2,11 +2,30 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 
 export default class Login extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+          value: ''
+        };
+    
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+      }
+
+      handleChange(event) {
+        this.setState({value: event.target.value});
+      }
+
+    handleSubmit(event) {
+        alert('Hola ' + this.state.value);
+        event.preventDefault();
+      }
     render() {
         return (
         <div className="auth-wrapper">
         <div className="auth-inner">
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 <h3>Sign In</h3>
 
                 <div className="form-group">

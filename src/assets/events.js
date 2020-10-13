@@ -32,8 +32,8 @@ export default [
   {
     id: 4,
     title: 'Some Event',
-    start: new Date(2015, 3, 9, 0, 0, 0),
-    end: new Date(2015, 3, 10, 0, 0, 0),
+    start: new Date(2020, 11, 10, 10, 0, 0),
+    end: new Date(2020, 11, 10, 11, 0, 0),
   },
   {
     id: 5,
@@ -45,8 +45,8 @@ export default [
   {
     id: 6,
     title: 'Meeting',
-    start: new Date(2015, 3, 12, 10, 30, 0, 0),
-    end: new Date(2015, 3, 12, 12, 30, 0, 0),
+    start: new Date(2020, 3, 12, 10, 30, 0, 0),
+    end: new Date(2020, 3, 12, 12, 30, 0, 0),
     desc: 'Pre-meeting meeting, to prepare for the meeting',
   },
   {

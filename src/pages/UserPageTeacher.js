@@ -4,7 +4,7 @@ import data from '../assets/teacher.json'
 import "../styles.css";
 import userPhoto from '../assets/joaquito.webp'
 import {Button, Card, Container, Row, Col } from 'react-bootstrap'
-const MapViewTeacher = React.lazy(() => import ('../components/MapView.js'));
+const MapViewTeacher = React.lazy(() => import ('../components/MapViewTeacher.js'));
 
 const subjectsData = data.subjects;
 
