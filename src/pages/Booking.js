@@ -17,17 +17,12 @@ return (
     <header>
         <h1>Elija día para la próxima clase</h1>
     </header>
-    <Jumbotron fluid>
-        <Container fluid> 
-            <Row xs={1} md={2} lg={3} xl={3}>
                 <MyCalendar fluid
                     teacher= {id}>
                     
                 </MyCalendar>
-            </Row>
-        </Container>
-    </Jumbotron>
-<Link to="/"> HomePage </Link>
+            
+    <Link to="/"> HomePage </Link>
 </>
 
 );
