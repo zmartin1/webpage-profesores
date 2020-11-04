@@ -32,9 +32,6 @@ class UserPageTeacher extends React.Component {
       // .then(res => res.text())
       .then(
         (result) => {
-          const mediaStream = new MediaStream();
-          const video = document.getElementById('video-player');
-          video.srcObject = mediaStream;
           this.setState({
             isLoaded: true,
             
