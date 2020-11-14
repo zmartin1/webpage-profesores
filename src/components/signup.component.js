@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
 import React, { Component } from "react";
 import DatePicker from 'react-datepicker'
+import axios from 'axios';
+import { AxiosProvider, Request, Get, Delete, Head, Post, Put, Patch, withAxios } from 'react-axios'
+
 
 
 export default class Login extends Component {
@@ -9,7 +12,7 @@ export default class Login extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {name: '', lastName: '', nickname: '', email: '', password: '', date: new Date()};
+        this.state = {name: '', nickname: '', email: '', password: '', date: new Date()};
         this.firstDate= new Date()
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,31 +20,44 @@ export default class Login extends Component {
 
     handleSubmit(event) {
 
-        event.preventDefault();
-        const data = new FormData(event.target);
+        
+        const data1 = JSON.stringify(new FormData(event.target));
+        console.log("handleSubmit")
+        axios.post(`https://noviembre.herokuapp.com/register/alumno`, { data1 })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      }).catch(error => {
+        console.error('There was an error!', error);
+             });
 
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: data
-        };
-        fetch('https://app-tic3.herokuapp.com/register/alumno', requestOptions)
-            .then(async response => {
-                const data = await response.json();
+        event.preventDefault();
+
+      
+        // const requestOptions = {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify.data,
+        //     mode: 'cors'
+        // };
+        // fetch('https://noviembre.herokuapp.com/register/alumno', requestOptions)
+        //     .then(async response => {
+        //         const data = await response.json();
     
-                // check for error response
-                if (!response.ok) {
-                    // get error message from body or default to response status
-                    const error = (data && data.message) || response.status;
-                    return Promise.reject(error);
-                }
+        //         // check for error response
+        //         if (!response.ok) {
+        //             // get error message from body or default to response status
+        //             const error = (data && data.message) || response.status;
+        //             console.log("f"+ data)
+        //             return Promise.reject(error);
+        //         }
     
-                this.setState({ postId: data.id })
-            })
-            .catch(error => {
-                this.setState({ errorMessage: error.toString() });
-                console.error('There was an error!', error);
-            });
+        //         this.setState({ postId: data.id })
+        //     })
+        //     .catch(error => {
+        //         this.setState({ errorMessage: error.toString() });
+        //         console.error('There was an error!', error);
+        //     });
       }
     
       handleChange(event) {
@@ -64,14 +80,10 @@ export default class Login extends Component {
                 <h3>Sign Up</h3>
 
                 <div className="form-group">
-                    <label>First name</label>
-                    <input type="text" name= 'name' className="form-control" value ={this.state.name} onChange={this.handleChange} placeholder="First name" />
+                    <label>Name</label>
+                    <input type="text" name= 'name' className="form-control" value ={this.state.name} onChange={this.handleChange} placeholder="Name" />
                 </div>
 
-                <div className="form-group">
-                    <label>Last name</label>
-                    <input type="text" name= 'lastName'className="form-control" value ={this.state.lastName} onChange={this.handleChange} placeholder="Last name" />
-                </div>
 
 
                 {/* <DatePicker 
@@ -85,8 +97,8 @@ export default class Login extends Component {
             
 
                 <div className="form-group">
-                    <label>Nickname</label>
-                    <input type="text" name= 'nickname' className="form-control" value ={this.state.nickname} onChange={this.handleChange} placeholder="Nickname" />
+                    <label>Username</label>
+                    <input type="text" name= 'Username' className="form-control" value ={this.state.Username} onChange={this.handleChange} placeholder="Username" />
                 </div>
 
                 <div className="form-group">
