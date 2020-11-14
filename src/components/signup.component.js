@@ -12,7 +12,7 @@ export default class Login extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {name: '', nickname: '', email: '', password: '', date: new Date()};
+        this.state = {name: '', username: '', email: '', password: '', fecha_nacimiento: new Date()};
         this.firstDate= new Date()
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,17 +21,19 @@ export default class Login extends Component {
     handleSubmit(event) {
 
         
-        const data1 = JSON.stringify(new FormData(event.target));
+        const data1 = this.state;
+        console.log(data1)
         console.log("handleSubmit")
-        axios.post(`https://noviembre.herokuapp.com/register/alumno`, { data1 })
+        axios.post(`https://noviembre.herokuapp.com/register/alumno`,  data1 , {headers: {
+            'Content-Type': 'application/json'}
+        })
       .then(res => {
         console.log(res);
         console.log(res.data);
       }).catch(error => {
         console.error('There was an error!', error);
              });
-
-        event.preventDefault();
+             event.preventDefault();
 
       
         // const requestOptions = {
@@ -76,10 +78,10 @@ export default class Login extends Component {
         return (
             <div className="auth-wrapper">
             <div className="auth-inner">
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 <h3>Sign Up</h3>
 
-                <div className="form-group">
+                <div className="form-group" >
                     <label>Name</label>
                     <input type="text" name= 'name' className="form-control" value ={this.state.name} onChange={this.handleChange} placeholder="Name" />
                 </div>
@@ -98,7 +100,7 @@ export default class Login extends Component {
 
                 <div className="form-group">
                     <label>Username</label>
-                    <input type="text" name= 'Username' className="form-control" value ={this.state.Username} onChange={this.handleChange} placeholder="Username" />
+                    <input type="text" name= 'username' className="form-control" value ={this.state.username} onChange={this.handleChange} placeholder="Username" />
                 </div>
 
                 <div className="form-group">
@@ -111,7 +113,7 @@ export default class Login extends Component {
                     <input type="password" name= 'password' className="form-control" value ={this.state.password} onChange={this.handleChange} placeholder="Enter password" />
                 </div>
 
-                <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
+                <button type="submit">Sign Up</button>
                 <p className="forgot-password text-right">
                     Already registered <Link to={"/sign-in"}> sign in? </Link>
                 </p>
