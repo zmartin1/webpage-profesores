@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom'
 
+
 import HomePage from './pages/HomePage'
 import UserPage from './pages/UserPageTeacher'
 import Profile from './pages/Profile'
@@ -16,6 +17,8 @@ import SideBar from "./components/sidebar.js";
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+
+
 
 function App() {
   return (
