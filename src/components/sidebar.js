@@ -118,6 +118,9 @@ class sidebar extends React.Component {
               <LinkContainer to="/List">
                 <Nav.Link> Lista </Nav.Link>
               </LinkContainer>
+              <LinkContainer to="/map">
+                <Nav.Link> Mapa </Nav.Link>
+              </LinkContainer>
             
               <NavDropdown title="Profesores" id="basic-nav-dropdown">
                 <NavDropdown.Item>
