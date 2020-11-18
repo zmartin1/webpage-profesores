@@ -7,28 +7,45 @@ const MapViewTeacher = React.lazy(() => import ('../components/MapViewTeacher.js
 
 const subjectsData = data.subjects;
 
+
 class UserPageTeacher extends React.Component {
   constructor(props) {
     super(props);
-    this.teacherUser = data.username
     this.state = {
       subjects: subjectsData,
       teacherPhoto: {},
-      isLoaded: false
+      isLoaded: false,
+      teacher: this.props.location.state.teacher
     }
     
   }
 
   componentDidMount() {
-    var cdn = "https://aprendapp.s3.us-east-2.amazonaws.com/teachers/"+ String(this.teacherUser) + ".webp"
+    console.log("Hola "+this.state.teacher)
+    fetch("https://noviembre.herokuapp.com/profesores/"+String(this.state.teacher), {
+                    "headers": {
+                    "content-type": "application/json",
+                    },
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "method": "GET",
+                    "mode": "cors",
+                })
+                // .then(
+                //     function(response) {
+                //         if(!response.ok){
+                //             throw Error(response.statusText)
+                            
+                //         }
+                //         return response;
+                // }
+                //     )
+                .then(response => response.json())
+                .then(response => this.setState({...this.state, subjects: response.subjects}))
+
+    var cdn = "https://aprendapp.s3.us-east-2.amazonaws.com/teachers/"+ String(this.state.teacher) + ".webp"
     console.log(cdn)
     fetch(cdn, {mode:'cors'} 
-    //   {headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    // }} ,
     )
-      // .then(res => res.text())
       .then(
         (result) => {
           this.setState({
@@ -47,7 +64,7 @@ class UserPageTeacher extends React.Component {
             isLoaded: true,
             error
           });
-          console.log("Jajajajajaja sos malo en esto"+ {cdn})
+          console.log("Error"+ {cdn})
           throw error
         }
       )
@@ -59,14 +76,17 @@ class UserPageTeacher extends React.Component {
       <Container fluid>
         <Row xs={1} md={2} lg={3} xl={3}>
           <Col lg={true}>
+              {
+                !this.state.isLoaded && <h1> Cargando </h1>
+              }
+            { this.state.isLoaded &&
             <Card>
-              { this.state.isLoaded &&
                 <Suspense fallback={<div>Loading...</div>}>
                   <Card.Img display= "inline-block" variant="top" src={this.state.teacherPhoto} alt="Profile Photo"/>
                 </Suspense> 
-              } 
+              
               {
-                !this.state.isLoaded && <h1> No cargo na </h1>
+                !this.state.isLoaded && <h1> Cargando </h1>
 
               }
             
@@ -85,6 +105,7 @@ class UserPageTeacher extends React.Component {
                   </Button>
               </Card.Body>
             </Card>
+            }
           </Col>
           <Col lg={true}>
             <Container display= "inline-block" fluid>
@@ -102,5 +123,5 @@ class UserPageTeacher extends React.Component {
 }
 
 
-export default UserPageTeacher;
+export default (UserPageTeacher);
   

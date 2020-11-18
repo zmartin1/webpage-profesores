@@ -1,4 +1,4 @@
-import React, { Component, useContext } from "react";
+import React, { Component} from "react";
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -69,7 +69,7 @@ class Login extends Component {
                     "referrerPolicy": "strict-origin-when-cross-origin",
                     "method": "GET",
                     "mode": "cors",
-                }).catch(this.setState({ redirect: "/fail" }))
+                })
                 // .then(
                 //     function(response) {
                 //         if(!response.ok){

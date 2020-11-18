@@ -12,10 +12,7 @@ export default function ForgotPassword() {
 
     <h1>Hello there user {id}</h1>
 
-    <p>U forgot your password hahahaha.
-        U really are useless, arent u?
-        {"\n"}
-        **** you
+    <p>Stub
     </p>
     <Link to="/"> HomePage </Link>
     </>

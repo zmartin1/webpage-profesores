@@ -8,6 +8,7 @@ import UserPage from './pages/UserPageTeacher'
 import Profile from './pages/Profile'
 import Booking from './pages/Booking'
 import Mapa from './pages/Mapa'
+import List from './pages/List'
 import Settings from './pages/Settings'
 import About from './pages/About'
 import ForgotPassword from './pages/ForgotPassword'
@@ -37,6 +38,7 @@ function App() {
         <Route exact path="/about" component={About} />
         <Route exact path="/sign-up" component={SignUp} />
         <Route exact path="/map" component={Mapa} />
+        <Route exact path="/list" component={List} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/settings" component={Settings} />
         <Route path="/teacher/:id/booking" component={Booking} />

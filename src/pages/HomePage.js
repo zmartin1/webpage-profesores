@@ -3,26 +3,45 @@ import { Link } from 'react-router-dom'
 import logo from '../logo.svg';
 import userPhoto from '../assets/joaquito.webp'
 import {Button, Card, Carousel, Container, Row, Col, Image} from 'react-bootstrap'
+import { connect } from 'react-redux';
+import { Redirect } from "react-router-dom";
 
 
-export default function HomePage() {
-
-    const teacher = "joaquito";
-    const link = '/teacher/'+ teacher
-    const [index, setIndex] = useState(0);
-
-    const handleSelect = (selectedIndex, e) => {
-        setIndex(selectedIndex);
+function mapStateToProps(state) {
+    return {
+      user: state.user
     };
+  }
 
-    return (
+  
+//   const [index, setIndex] = useState(0);
 
-    <div className="App">
+//     const handleSelect = (selectedIndex, e) => {
+//         setIndex(selectedIndex);
+//     };
+
+class HomePage extends React.Component {
+
+    
+
+    constructor(props) {
+        super(props);
+        this.state = {
+        }
         
+      }
+
+      
+    render (){
+    return(
+    
+    
+    <div className="App">
+        {this.props.user.username &&
         <Container fluid>
             <Row xs={1} md={2} lg={3} xl={3}>
                 <Col lg={true}>
-                    <Carousel activeIndex={index} onSelect={handleSelect} >
+                {this.props.user.last_teacher&&<Carousel >
                         <Carousel.Item>
                             <Image
                             className="d-block w-100"
@@ -33,10 +52,12 @@ export default function HomePage() {
                             <Carousel.Caption>
                                 <h3>Elige a un profesor nuevamente</h3>
                                 <p>Coordina una clase con tu último profesor.</p>
-                                <Link className="nav-link" to= {link} > {teacher} </Link>
+                                <Link className="nav-link" to= {{pathname: '/teacher/'+this.props.user.last_teacher, state:{teacher: this.props.user.last_teacher}}} > {this.props.user.last_teacher} </Link>
                             </Carousel.Caption>
                         </Carousel.Item>                      
                     </Carousel>
+                }
+                    
                 </Col>
                 <Col>
                     <Card >
@@ -47,7 +68,7 @@ export default function HomePage() {
                                 Elija un profesor acorde a sus necesidades
                             </Card.Text>
                             <Button variant="outline-primary">
-                                <Link className="nav-link" to="/map"> Mapa </Link>
+                                <Link className="nav-link" to="/list"> Lista de profesores </Link>
                             </Button>
                         </Card.Body>
                     </Card>
@@ -72,17 +93,16 @@ export default function HomePage() {
             </Row>
             
         </Container>
-        {/* <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-                Edit <code>src/App.js</code> and save to reload.
-            </p>
-            
-            <Link to="/:id"> UserPage </Link>
-        </header> */}
+        
+    }
+    {!this.props.user.username &&<Redirect to={'/sign-in'} />}
     </div>
+    
+
 
     );
-
+    }
 }
+
+export default connect(mapStateToProps)(HomePage);
 
