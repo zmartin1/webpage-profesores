@@ -2,7 +2,7 @@ import React, {Suspense} from "react";
 import { Link } from 'react-router-dom'
 import data from '../assets/teacher.json'
 import "../styles.css";
-import {Button, Card, Container, Row, Col } from 'react-bootstrap'
+import {Button, Card, Container, Row, Col, Image } from 'react-bootstrap'
 const MapViewTeacher = React.lazy(() => import ('../components/MapViewTeacher.js'));
 
 const subjectsData = data.subjects;
@@ -20,6 +20,12 @@ class UserPageTeacher extends React.Component {
     
   }
 
+  formatImageUrl(url) {
+    const width = '400'
+    const height = '400'
+
+    return url.replace('{width}', width).replace('{height}', height)
+ }
   componentDidMount() {
     console.log("Hola "+this.state.teacher)
     fetch("https://noviembre.herokuapp.com/profesores/"+String(this.state.teacher), {
@@ -49,10 +55,9 @@ class UserPageTeacher extends React.Component {
       .then(
         (result) => {
           this.setState({
+            ...this.state,
             isLoaded: true,
-            
-            teacherPhoto: (result.json())
-            
+            teacherPhoto: (result.blob())
           });
           console.log("Entro bien"+ String(result))
         },
@@ -82,7 +87,9 @@ class UserPageTeacher extends React.Component {
             { this.state.isLoaded &&
             <Card>
                 <Suspense fallback={<div>Loading...</div>}>
-                  <Card.Img display= "inline-block" variant="top" src={this.state.teacherPhoto} alt="Profile Photo"/>
+                  
+                  <Card.Img src = {
+                                    `data:image/webp,${this.state.teacherPhoto}`} alt="Profile Photo" />
                 </Suspense> 
               
               {
