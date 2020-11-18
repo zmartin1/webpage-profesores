@@ -2,7 +2,6 @@ import React, {Suspense} from "react";
 import { Link } from 'react-router-dom'
 import data from '../assets/teacher.json'
 import "../styles.css";
-import userPhoto from '../assets/joaquito.webp'
 import {Button, Card, Container, Row, Col } from 'react-bootstrap'
 const MapViewTeacher = React.lazy(() => import ('../components/MapViewTeacher.js'));
 
@@ -35,7 +34,7 @@ class UserPageTeacher extends React.Component {
           this.setState({
             isLoaded: true,
             
-            teacherPhoto: URL.createObjectURL(result)
+            teacherPhoto: (result.json())
             
           });
           console.log("Entro bien"+ String(result))

@@ -17,30 +17,29 @@ import SideBar from "./components/sidebar.js";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-
 function App() {
   return (
     <div className="App">
-      <SideBar pageWrapId={"page-wrap"} outerContainerId={"App"} />
-        <div id="page-wrap">
-            {/* <h1></h1> */}
-        </div>
-      {/* <nav className="navbar navbar-expand-lg navbar-light fixed-top">
-      </nav> */}
-      
-      <Switch>
-      <Route exact path="/forgot-password" component={ForgotPassword} />
-      <Route exact path="/" component={HomePage} />
-      <Route exact path="/sign-in" component={Login} />
-      <Route exact path="/about" component={About} />
-      <Route exact path="/sign-up" component={SignUp} />
-      <Route exact path="/map" component={Mapa} />
-      <Route exact path="/profile" component={Profile} />
-      <Route exact path="/settings" component={Settings} />
-      <Route path="/teacher/:id/booking" component={Booking} />
-      <Route path="/teacher/:id" component={UserPage} />
-      
-      </Switch>
+        <SideBar pageWrapId={"page-wrap"} outerContainerId={"App"} />
+          <div id="page-wrap">
+              {/* <h1></h1> */}
+          </div>
+        {/* <nav className="navbar navbar-expand-lg navbar-light fixed-top">
+        </nav> */}
+        
+        <Switch>
+        <Route exact path="/forgot-password" component={ForgotPassword} />
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/sign-in" component={Login} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/sign-up" component={SignUp} />
+        <Route exact path="/map" component={Mapa} />
+        <Route exact path="/profile" component={Profile} />
+        <Route exact path="/settings" component={Settings} />
+        <Route path="/teacher/:id/booking" component={Booking} />
+        <Route path="/teacher/:id" component={UserPage} />
+        
+        </Switch>
     </div>
   );
 }

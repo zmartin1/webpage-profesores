@@ -2,65 +2,37 @@ import React from "react";
 import logo from '../logo.svg';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
 import { LinkContainer } from "react-router-bootstrap";
-import axios from 'axios'
+import { connect } from 'react-redux';
 
 
-export default class sidebar extends React.Component {
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+}
+
+class sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       username: ""
     };
   }
-  componentDidMount() {
-    axios.defaults.withCredentials = true;
+  // componentDidMount() {
       // headers: {'Content-Type': 'application/json'}
     
-    const link = `https://noviembre.herokuapp.com/myinfo`
-    console.log("hola Primero")
-
-    fetch("https://noviembre.herokuapp.com/myinfo", {
-      "headers": {
-        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-        "accept-language": "en-GB,en-US;q=0.9,en;q=0.8,es;q=0.7",
-        "sec-fetch-dest": "document",
-        "sec-fetch-mode": "navigate",
-        "sec-fetch-site": "none",
-        "sec-fetch-user": "?1",
-        "upgrade-insecure-requests": "1"
-      },
-      "referrerPolicy": "strict-origin-when-cross-origin",
-      "body": null,
-      "method": "GET",
-      "mode": "cors",
-      "credentials": "include"
-    }).then(res => res.json())
-     .then(
-        (result) => {
-          const username1 = result.username
-          this.setState({username: username1, loading: false })
-          console.log("holi")
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      );
-
-
-
-    // axios.get(link).then(res => {
+    // const link = `https://noviembre.herokuapp.com/alumnos/`
+    // console.log("hola Primero")
+    // axios.get(link, { crossdomain: true, withCredentials: true, contentType: "application/x-www-form-urlencoded" }).then(res => {
     //   const username1 = res.username
     //   this.setState({username: username1, loading: false })
     //   console.log("holi")
     // }).catch(error => { // your error handling goes here}
-    //   console.log('Hubo F'+ error.message + error.name)
+    //   console.log('Hubo F '+ error.message + error.name)
     
+    
+    
+
 
     // fetch(link)
     //   .then(res => res.json())
@@ -68,7 +40,7 @@ export default class sidebar extends React.Component {
     //     (result) => {
     //       const username1 = result.username
     //       this.setState({username: username1, loading: false })
-    //       console.log("holi")
+    //       console.log("Username")
     //     },
     //     // Note: it's important to handle errors here
     //     // instead of a catch() block so that we don't swallow
@@ -81,8 +53,8 @@ export default class sidebar extends React.Component {
     //     }
     //   )
     // }
-    // )
-  }
+    
+  
 
 
   
@@ -114,8 +86,8 @@ export default class sidebar extends React.Component {
             
             <Nav className="mr-auto">
             {
-                this.state.username && 
-                <NavDropdown title={ this.name }  id="basic-nav-dropdown">
+                this.props.user.nombre && 
+                <NavDropdown title={this.props.user.nombre}  id="basic-nav-dropdown">
                   <LinkContainer to="/settings">
                     <Nav.Link> Settings </Nav.Link>
                   </LinkContainer>
@@ -133,9 +105,9 @@ export default class sidebar extends React.Component {
               </NavDropdown>
               }
               
-                {!this.state.username &&
+                {!this.props.user.username &&
                 <LinkContainer to="/sign-in">
-                    <Nav.Link> Sign In </Nav.Link>
+                    {!this.props.user.username &&<Nav.Link> Sign In </Nav.Link>}
                 </LinkContainer>
 
 
@@ -185,3 +157,5 @@ export default class sidebar extends React.Component {
 //     </Menu>
 //   );
 // };
+
+export default connect(mapStateToProps)(sidebar);
