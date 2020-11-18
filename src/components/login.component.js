@@ -1,27 +1,102 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 
-export default class Login extends Component {
+function mapStateToProps(state) {
+    return {
+      user: state.user
+    };
+  }
+
+
+
+
+
+class Login extends Component {
+    
+    
 
     constructor(props) {
         super(props);
         this.state = {
-          value: ''
+          username: "",
+          password: "",
+          redirect: null
         };
-    
+        
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
       }
+      routingFunction = (target, param) => {
+        this.props.history.push({
+            pathname: {target},
+            state: param
+        });
+    }
+
 
       handleChange(event) {
-        this.setState({value: event.target.value});
+        const name = event.target.name;
+
+        this.setState({
+        [name]: event.target.value
+        });
       }
 
     handleSubmit(event) {
-        alert('Hola ' + this.state.value);
-        event.preventDefault();
-      }
+        const data1 = this.state;
+        console.log(data1)
+        console.log("handleSubmit")
+        
+        
+
+        // axios.post(`https://noviembre.herokuapp.com/login/alumno`,  data1, { crossdomain: true, withCredentials: true, contentType: "application/x-www-form-urlencoded" })
+        // .then(res => {
+        //   console.log(res);
+        //   console.log(res.data);
+        // }).catch(error => {
+        //   console.error('There was an error!', error);
+        //        });
+        //   event.preventDefault();
+
+        
+        fetch("https://noviembre.herokuapp.com/alumnos/"+data1.username, {
+                    "headers": {
+                    "content-type": "application/json",
+                    },
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "method": "GET",
+                    "mode": "cors",
+                }).catch(this.setState({ redirect: "/fail" }))
+                // .then(
+                //     function(response) {
+                //         if(!response.ok){
+                //             throw Error(response.statusText)
+                            
+                //         }
+                //         return response;
+                // }
+                //     )
+                .then(response => response.json())
+                .then(response => this.props.dispatch({ type: "SIGN_IN", user: response} ))
+                .then(this.setState({ redirect: "/" }))
+            
+        ;
+            
+                
+          
+
+        event.preventDefault()
+        }
+
+  
+    //   }
     render() {
+        if(this.state.redirect){
+            return <Redirect to={this.state.redirect} />
+        }
         return (
         <div className="auth-wrapper">
         <div className="auth-inner">
@@ -29,13 +104,13 @@ export default class Login extends Component {
                 <h3>Sign In</h3>
 
                 <div className="form-group">
-                    <label>Email address</label>
-                    <input type="email" className="form-control" placeholder="Enter email" />
+                    <label>Username</label>
+                    <input type="username" name='username' className="form-control" value ={this.state.username} onChange={this.handleChange} placeholder="Enter username" />
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" />
+                    <input type="password" name= 'password' className="form-control" value ={this.state.password} onChange={this.handleChange} placeholder="Enter password" />
                 </div>
 
                 <div className="form-group">
@@ -44,8 +119,9 @@ export default class Login extends Component {
                         <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
                     </div>
                 </div>
-
-                <button type="submit" className="btn btn-primary btn-block">Submit</button>
+                {/* <User.Consumer> */}
+                    <button type="submit" className="btn btn-primary btn-block">Sign In</button>
+                {/* </User.Consumer> */}
                 <p className="forgot-password text-right">
                     Forgot <Link to="/forgot-password"> password? </Link>
                 </p>
@@ -58,3 +134,4 @@ export default class Login extends Component {
         );
     }
 }
+export default withRouter(connect(mapStateToProps)(Login));

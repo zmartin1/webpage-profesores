@@ -7,14 +7,45 @@ import * as serviceWorker from './serviceWorker';
 import { initializeFirebase } from './push-notification';
 import { askForPermissioToReceiveNotifications } from './push-notification';
 import "./styles.css";
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+
+const initialState = {
+  user: "Sign-In"
+};
+
+const store = createStore(reducer);
+
+
+
+
+
+function reducer(state = initialState, action) {
+  console.log('reducer', state, action);
+
+  switch(action.type) {
+    case 'SIGN_IN':
+      return {
+        user: action.user
+      };
+    case 'SIGN_OUT':
+      return {
+        user: "Sign-In"
+      };
+    default:
+      return state;
+  }
+}
 
 ReactDOM.render(
   <div>
+    <Provider store={store}>
     <BrowserRouter>
       <React.StrictMode>
         <App />
       </React.StrictMode>
     </BrowserRouter>
+    </Provider>
   </div>,
   document.getElementById('root')
 );

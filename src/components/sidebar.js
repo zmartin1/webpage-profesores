@@ -2,10 +2,62 @@ import React from "react";
 import logo from '../logo.svg';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
 import { LinkContainer } from "react-router-bootstrap";
+import { connect } from 'react-redux';
 
-const user = "Martín Brian"
 
-export default class sidebar extends React.Component {
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+}
+
+class sidebar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: ""
+    };
+  }
+  // componentDidMount() {
+      // headers: {'Content-Type': 'application/json'}
+    
+    // const link = `https://noviembre.herokuapp.com/alumnos/`
+    // console.log("hola Primero")
+    // axios.get(link, { crossdomain: true, withCredentials: true, contentType: "application/x-www-form-urlencoded" }).then(res => {
+    //   const username1 = res.username
+    //   this.setState({username: username1, loading: false })
+    //   console.log("holi")
+    // }).catch(error => { // your error handling goes here}
+    //   console.log('Hubo F '+ error.message + error.name)
+    
+    
+    
+
+
+    // fetch(link)
+    //   .then(res => res.json())
+    //   .then(
+    //     (result) => {
+    //       const username1 = result.username
+    //       this.setState({username: username1, loading: false })
+    //       console.log("Username")
+    //     },
+    //     // Note: it's important to handle errors here
+    //     // instead of a catch() block so that we don't swallow
+    //     // exceptions from actual bugs in components.
+    //     (error) => {
+    //       this.setState({
+    //         isLoaded: true,
+    //         error
+    //       });
+    //     }
+    //   )
+    // }
+    
+  
+
+
+  
 
 
   render(){
@@ -33,22 +85,33 @@ export default class sidebar extends React.Component {
           <Navbar.Collapse id="basic-navbar-nav" >
             
             <Nav className="mr-auto">
-              <NavDropdown title={ user }  id="basic-nav-dropdown"> 
-                <LinkContainer to="/settings">
-                  <Nav.Link> Settings </Nav.Link>
-                </LinkContainer>
-                <LinkContainer to="/profile">
-                  <Nav.Link> My Profile </Nav.Link>
-                </LinkContainer>
-                {/* <Link onClick={this.closeNavbar} className="nav-link" to="/settings"> Settings </Link>
-                <Link onClick={this.closeNavbar} className="nav-link"  to="/profile"> My Profile </Link> */}
-                <NavDropdown.Divider />
-                <Button variant="light" block >
-                  <LinkContainer to="/sign-in">
-                    <Nav.Link> Log Out </Nav.Link>
+            {
+                this.props.user.nombre && 
+                <NavDropdown title={this.props.user.nombre}  id="basic-nav-dropdown">
+                  <LinkContainer to="/settings">
+                    <Nav.Link> Settings </Nav.Link>
                   </LinkContainer>
-                </Button>
+                  <LinkContainer to="/profile">
+                    <Nav.Link> My Profile </Nav.Link>
+                  </LinkContainer>
+                  {/* <Link onClick={this.closeNavbar} className="nav-link" to="/settings"> Settings </Link>
+                  <Link onClick={this.closeNavbar} className="nav-link"  to="/profile"> My Profile </Link> */}
+                  <NavDropdown.Divider />
+                  <Button variant="light" block >
+                    <LinkContainer to="/sign-in">
+                      <Nav.Link> Log Out </Nav.Link>
+                    </LinkContainer>
+                  </Button>
               </NavDropdown>
+              }
+              
+                {!this.props.user.username &&
+                <LinkContainer to="/sign-in">
+                    {!this.props.user.username &&<Nav.Link> Sign In </Nav.Link>}
+                </LinkContainer>
+
+
+              }
               <LinkContainer to="/">
                 <Nav.Link> Home </Nav.Link>
               </LinkContainer>
@@ -94,3 +157,5 @@ export default class sidebar extends React.Component {
 //     </Menu>
 //   );
 // };
+
+export default connect(mapStateToProps)(sidebar);
