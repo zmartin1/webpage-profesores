@@ -6,7 +6,7 @@ import {Button, Card, Container, Row, Col, Image } from 'react-bootstrap'
 const MapViewTeacher = React.lazy(() => import ('../components/MapViewTeacher.js'));
 
 const subjectsData = data.subjects;
-
+var cdn = ""
 
 class UserPageTeacher extends React.Component {
   constructor(props) {
@@ -48,7 +48,7 @@ class UserPageTeacher extends React.Component {
                 .then(response => response.json())
                 .then(response => this.setState({...this.state, subjects: response.subjects}))
 
-    var cdn = "https://aprendapp.s3.us-east-2.amazonaws.com/teachers/"+ String(this.state.teacher) + ".webp"
+    cdn = "https://aprendapp.s3.us-east-2.amazonaws.com/teachers/"+ String(this.state.teacher) + ".webp"
     console.log(cdn)
     fetch(cdn, {mode:'cors'} 
     )
@@ -88,8 +88,10 @@ class UserPageTeacher extends React.Component {
             <Card>
                 <Suspense fallback={<div>Loading...</div>}>
                   
-                  <Card.Img src = {
-                                    `data:image/webp,${this.state.teacherPhoto}`} alt="Profile Photo" />
+                  <Card.Img src = {cdn}
+                  // {
+                  //                   `data:image/webp,${this.state.teacherPhoto}`}
+                                     alt="Profile Photo" />
                 </Suspense> 
               
               {

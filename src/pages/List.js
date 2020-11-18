@@ -1,21 +1,65 @@
 import React from "react";
 import { Link } from 'react-router-dom'
-import {Container} from 'react-bootstrap'
+import {Button, Card, Container, Row, Col, Image, ListGroup } from 'react-bootstrap'
 
-export default function List() {
+export default class List extends React.Component{
 
-return (
+  constructor(props) {
+    super(props);
+    this.state = {
+      profesores: []
+    }
+    
+  }
 
 
+  componentDidMount() {
+    console.log("Hola ")
+    fetch("https://noviembre.herokuapp.com/profesores", {
+                    "headers": {
+                    "content-type": "application/json",
+                    },
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "method": "GET",
+                    "mode": "cors",
+                })
+                .then(response => response.json())
+                .then(response => this.setState({profesores: response}))
+              }
 
-  <Container>
-    <h1>Welcome</h1>
-    <h2>This is a webpage first made for TIC III</h2>
+render() {
+  return (
+    <div>{this.state.profesores &&
+    <Container>
+      {this.state.profesores.map((teacher, index) => (
+        <Card key={index} >
+          <Card.Title> 
+            {teacher.nombre}
+          </Card.Title>
+          <Card.Body>
+          {teacher.materias.map((subject, indx) => (
+              <ListGroup.Item>
+                {subject.nombre}
+              </ListGroup.Item>
+            )
+          )}
+          </Card.Body>
+          <Link className="nav-link" 
+          to= {{pathname: '/teacher/'+ teacher.username, state:{teacher: teacher.username}}} > Perfil de {teacher.nombre}</Link>
 
-    <p>This is where College students will be able to get an income, and we will able to contribute to education.</p>
-    <Link to="/"> HomePage </Link>
-    <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-  </Container>
-);
+
+        </Card>
+      ))
+          
+          }
+    </Container>
+  
+        }
+
+    {!this.state.profesores && <div>Loading...</div>}
+    </div>
+    
+    )
+}
 
 }
